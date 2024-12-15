@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic operation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+    input {
+      padding: 5px;
+      margin: 5px;
+    }
+    button {
+      padding: 5px 10px;
+      margin: 5px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Number Operations Based on Time</h1>
+  
+  <label for="number">Enter a number:</label>
+  <input type="number" id="number" required>
+  <br>
+
+  <button onclick="performOperation()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateSquare(num) {
+      return Math.pow(num, 2); 
+    }
+
+    function calculateSquareRoot(num) {
+      return Math.sqrt(num); 
+    }
+
+    function performOperation() {
+      const number = document.getElementById('number').value;
+      const resultDiv = document.getElementById('result');
+
+      if (number === '') {
+        resultDiv.innerHTML = 'Please enter a number.';
+        return;
+      }
+
+      const currentHour = new Date().getHours();
+      
+      let result;
+      let operation;
+
+      if (currentHour >= 6 && currentHour < 18) {
+        result = calculateSquare(number);
+        operation = 'square';
+      } else {
+        result = calculateSquareRoot(number);
+        operation = 'square root';
+      }
+
+      resultDiv.innerHTML = `The ${operation} of ${number} is ${result}.`;
+    }
+  </script>
+
+</body>
+</html>
